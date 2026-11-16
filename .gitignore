@@ -1,0 +1,4 @@
+# 取得データは Actions で毎回生成する（リポジトリには入れない）
+site/data/
+*.tmp
+__pycache__/

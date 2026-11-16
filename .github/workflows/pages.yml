@@ -1,0 +1,48 @@
+name: Update and deploy viewer
+
+on:
+  # private リポジトリでは Actions の無料枠（月 2,000 分）を消費する。
+  # 1 回の実行は 1 分未満だが分単位切り上げなので、毎時実行で月 約 720 分。
+  # public リポジトリに移したら '*/20 * * * *' などに短縮してよい（無料）。
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # 課金を抑えるため取得とデプロイを 1 ジョブにまとめている
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Zulip Japan channel
+        env:
+          # 未設定なら未ログイン（web-public）で取得する。
+          # 取得できなくなったらボットの認証情報を Secrets に登録する。
+          ZULIP_EMAIL: ${{ secrets.ZULIP_EMAIL }}
+          ZULIP_API_KEY: ${{ secrets.ZULIP_API_KEY }}
+        run: python3 scripts/fetch_zulip.py
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>ROS Japan Zulip ビューア</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314213D'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2A48F' font-family='sans-serif' font-weight='700'%3E%23%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <aside class="sidebar" id="sidebar" aria-label="チャンネルと話題">
+      <header class="ws">
+        <div class="ws-name" id="ws-name">ROS Japan</div>
+        <div class="ws-sub" id="ws-sub">Zulip Japan チャンネル</div>
+      </header>
+      <nav class="nav" id="nav"></nav>
+      <footer class="ws-foot">
+        <div id="updated">読み込み中…</div>
+        <div class="ws-foot-note">読むだけのビューアです。書き込みは Zulip で。</div>
+      </footer>
+    </aside>
+    <div class="resizer" id="resizer" role="separator" aria-orientation="vertical" aria-controls="sidebar"
+         aria-label="サイドバーの幅（ドラッグで変更、ダブルクリックで元に戻す）" tabindex="0"></div>
+    <div class="scrim" id="scrim" hidden></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menu-btn" aria-label="メニューを開く" aria-controls="sidebar" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="title-wrap">
+          <h1 class="view-title" id="view-title">…</h1>
+          <div class="view-desc" id="view-desc"></div>
+        </div>
+        <form class="search" id="search-form" role="search">
+          <input type="search" id="search-input" placeholder="Japan チャンネルを検索" aria-label="メッセージを検索">
+        </form>
+        <a class="btn btn-ghost open-zulip" id="open-zulip" target="_blank" rel="noopener">Zulip で開く ↗</a>
+      </header>
+
+      <section class="timeline" id="timeline" aria-live="polite"></section>
+
+      <footer class="composer">
+        <a class="composer-box" id="composer" target="_blank" rel="noopener">
+          <span class="composer-placeholder" id="composer-placeholder">メッセージを送信</span>
+          <span class="btn btn-primary">Zulip で書き込む ↗</span>
+        </a>
+        <div class="composer-note" id="composer-note"></div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="vendor/purify.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

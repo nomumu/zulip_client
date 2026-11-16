@@ -1,0 +1,13 @@
+{
+  "title": "ROS Japan",
+  "subtitle": "Zulip Japan チャンネル",
+  "realm": "https://openrobotics.zulipchat.com",
+  "channel": { "id": 528046, "name": "Japan" },
+  "pinned": [
+    { "label": "はじめに", "topic": "[説明] Japanチャンネルの利用方法", "description": "Japan チャンネルの使い方と設定のコツ" },
+    { "label": "一般", "topic": "", "description": "雑談・自己紹介・迷ったらここ" },
+    { "label": "質問", "topic": "[質問] ROSの使い方に関するご相談", "description": "ROS の使い方の質問" },
+    { "label": "告知", "topic": "[告知]日本のROSイベントお知らせ", "description": "日本の ROS イベントのお知らせ" },
+    { "label": "求人", "topic": "[求人] 仕事、サークル、新しい活動へのお誘い", "description": "仕事・サークル・新しい活動へのお誘い" }
+  ]
+}
